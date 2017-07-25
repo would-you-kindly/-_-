@@ -35,8 +35,10 @@ namespace IIS.АСУ_Склад
             "Сумма as \'Сумма\'",
             "Товар as \'Товар\'",
             "Товар.Название as \'Название\'",
-            "Товар.Цена as \'Цена\'"}, Hidden=new string[] {
-            "Товар.Название"})]
+            "Товар.Цена as \'Цена\'",
+            "Заказ as \'Заказ\'"}, Hidden=new string[] {
+            "Товар.Название",
+            "Заказ"})]
     [MasterViewDefineAttribute("СтрокаЗаказаE", "Товар", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Название")]
     public class СтрокаЗаказа : ICSSoft.STORMNET.DataObject
     {

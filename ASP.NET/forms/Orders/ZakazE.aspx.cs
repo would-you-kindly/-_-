@@ -7,6 +7,11 @@ namespace IIS.АСУ_Склад
     using ICSSoft.STORMNET;
     using ICSSoft.STORMNET.Web.Controls;
     using ICSSoft.STORMNET.Web.AjaxControls;
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Services;
+
+    using ICSSoft.STORMNET.Web.Tools;
 
     public partial class ЗаказE : BaseEditForm<Заказ>
     {
@@ -73,6 +78,33 @@ namespace IIS.АСУ_Склад
         protected override DataObject SaveObject()
         {
             return base.SaveObject();
+        }
+
+        /// <summary>
+        /// Метод изменяющий LCS в лукапах, находящихся в AGE.
+        /// </summary>
+        /// <param name="ordKeys">Ключи.</param>
+        /// <param name="lfKey">Ключ сессии.</param>
+        /// <returns>Ключ сессии.</returns>
+        [WebMethod]
+        public static string CreateLf(string[] ordKeys, string lfKey)
+        {
+            if (string.IsNullOrEmpty(lfKey))
+            {
+                lfKey = Guid.NewGuid().ToString("B");
+            }
+
+            SQLWhereLanguageDef langdef = SQLWhereLanguageDef.LanguageDef;
+            var clientKeys = new List<object>
+            {
+                new VariableDef(langdef.GuidType, SQLWhereLanguageDef.StormMainObjectKey)
+            };
+
+            clientKeys.AddRange(ordKeys);
+            Function lf = langdef.GetFunction(langdef.funcNOT, langdef.GetFunction(langdef.funcIN, clientKeys.ToArray()));
+            LimitFunctionsHolder.PersistLimitFunction(lfKey, lf);
+
+            return lfKey;
         }
     }
 }

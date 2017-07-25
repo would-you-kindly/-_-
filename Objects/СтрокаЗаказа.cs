@@ -76,7 +76,11 @@ namespace IIS.АСУ_Склад
             set
             {
                 // *** Start programmer edit section *** (СтрокаЗаказа.Количество Set start)
-
+                if (value < 0)
+                {
+                    Exception ex = new Exception("Значение количества не может быть отрицательным");
+                    throw ex;
+                }
                 // *** End programmer edit section *** (СтрокаЗаказа.Количество Set start)
                 this.fКоличество = value;
                 // *** Start programmer edit section *** (СтрокаЗаказа.Количество Set end)

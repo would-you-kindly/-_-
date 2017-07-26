@@ -12,6 +12,7 @@ namespace IIS.АСУ_Склад
 {
     using System;
     using System.Xml;
+    using ICSSoft.STORMNET.Business;
     using ICSSoft.STORMNET;
     
     
@@ -26,6 +27,7 @@ namespace IIS.АСУ_Склад
     // *** Start programmer edit section *** (Заказ CustomAttributes)
 
     // *** End programmer edit section *** (Заказ CustomAttributes)
+    [BusinessServer("IIS.АСУ_Склад.ПроверкаНаличияТоваров, АСУ_Склад(BusinessServers)", ICSSoft.STORMNET.Business.DataServiceObjectEvents.OnAllEvents)]
     [AutoAltered()]
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("ЗаказE", new string[] {

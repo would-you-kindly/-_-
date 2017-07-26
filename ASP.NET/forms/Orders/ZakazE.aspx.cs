@@ -52,6 +52,11 @@ namespace IIS.АСУ_Склад
         /// </summary>
         protected override void PostApplyToControls()
         {
+            if ((DataObject != null) && (DataObject.Статус == СостояниеЗаказа.Оплаченный))
+            {
+                wb.SetReadonlyToControl(ctrlСтатус, true);
+            }
+
             Page.Validate();
         }
 

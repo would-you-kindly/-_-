@@ -301,6 +301,10 @@
     <Reference Include="SmartScroller">
       <HintPath>..\packages\NewPlatform.Flexberry.AspNet.2.1.0\lib\net40\SmartScroller.dll</HintPath>
     </Reference>
+    <ProjectReference Include="..\BusinessServers\АСУ_Склад%28BusinessServers%29.csproj">
+      <Project>{5999567c-2a5b-49ef-8e9f-a5d84e574b30}</Project>
+      <Name>АСУ_Склад%28BusinessServers%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="forms\Employees\SotrudnikE.aspx" />
